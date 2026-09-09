@@ -1,15 +1,14 @@
-import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 
 type Props = {
-  params: Promise<{ locale: string }>;
+    params: Promise<{ locale: string }>;
 };
 
 export default async function HomePage({ params }: Props) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = useTranslations("HomePage");
+    const { locale } = await params;
+    setRequestLocale(locale);
+    const t = await getTranslations("HomePage");
 
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 px-4 text-center">
